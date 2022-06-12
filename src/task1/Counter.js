@@ -1,5 +1,5 @@
 import './Counter.css';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 
 function Counter() {
@@ -12,7 +12,7 @@ function Counter() {
         <div className={`number ${counter > 0 ? 'cm-green' : counter < 0 ? 'cm-red' : 'cm-gray'}`}>
         {counter}
         </div>
-        <div class="buttons">
+        <div className="buttons">
           <button onClick={() => setCounter(counter + 1)}>+</button>
           <button onClick={() => setCounter(counter - 1)}>-</button>
         </div>

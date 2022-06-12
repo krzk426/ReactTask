@@ -1,59 +1,40 @@
 
 import './Todo.css';
-import React,  { useState } from "react";
-
-import { createStore } from 'redux'
+import React, { useState } from "react";
+import store from "../store/store";
+import SingleTodo from './SingleTodo';
+import { useSelector } from "react-redux";
 
 
 
 function Todo() {
-    
+
+    const todos = useSelector((state) => state.todos);
     const [text, setText] = useState('');
-   
-    function todos(state = [], action) {
-        switch (action.type) {
-            case 'ADD_TODO':
-                return state.concat([action.text]);
-            default:
-                return state;
-        }
-    }
-    
-    const store = createStore(todos, 'use redux');
 
     function add_todo() {
-        console.log("dodaje ", text)
-        let tmpText= text;
+        store.dispatch({type: "ADD_TODO", content: text})
         setText('');
-        return {
-            type: 'ADD_TODO',
-            text: tmpText
-        }
     }
-
-    function get_all_todos() {
-        console.log("biore ")
-        return {
-            type: 'DEFAULT',
-            text: ''
-        }
-    }
-
-    console.log(store)
-
-
 
     return (
         <div className="wrapper">
-            {store.getState()}
             <div className="turn">
                 Todo
                 <br />
             </div>
             <div className="flex">
                 <input type="text" placeholder="add new todo" value={text} onChange={(e) => setText(e.target.value)}></input>
-                <button className="button" onClick={() => { store.dispatch(add_todo()); store.dispatch(get_all_todos()); }}>add</button>
+                <button className="button" onClick={() => add_todo() }>add</button>
             </div>
+
+            <ul className="todo-list">
+                {todos.length !== 0
+                    ? todos.map((todo, index) => {
+                        return <SingleTodo key={`todo-${todo.id}`} todo={todo} />;
+                    })
+                    : "Todos' list is empty!"}
+            </ul>
         </div >
     );
 }

@@ -1,20 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import { Provider } from "react-redux";
 import TickTackToe from './task2/TickTackToe'
 import reportWebVitals from './reportWebVitals';
 import Counter from './task1/Counter';
 import Todo from './task3/Todo';
+import store from "./store/store";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     {/* <App /> */}
-    <Counter/>
-    <TickTackToe/>
-    <Todo/>
-    
+    <Counter />
+    <TickTackToe />
+
+    <Provider store={store}>
+      <Todo />
+    </Provider>
+
   </React.StrictMode>
 );
 

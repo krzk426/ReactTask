@@ -1,6 +1,6 @@
 
 import './TickTackToe.css';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function TickTackToe() {
 
@@ -13,7 +13,7 @@ function TickTackToe() {
     ]
 
     function getPoint(a, i) {
-        if (a != 1 && a != 2 & winner == 0) {
+        if (a !== 1 && a !== 2 & winner === 0) {
             let tmpArr = [...tickTock];
             tmpArr[i] = turn ? 1 : 2;
             setTickTock(tmpArr);
@@ -28,7 +28,7 @@ function TickTackToe() {
     }
 
     function checkSingleFact(i, user, arr) {
-        if (arr[winningSetup[i][0]] == user && arr[winningSetup[i][1]] == user && arr[winningSetup[i][2]] == user) {
+        if (arr[winningSetup[i][0]] === user && arr[winningSetup[i][1]] === user && arr[winningSetup[i][2]] === user) {
             setWinner(user);
         } else {
             if (i < 7) {
@@ -50,15 +50,15 @@ function TickTackToe() {
             </div>
             <div className="parent">
                 {tickTock.map((answer, i) => {
-                    return (<div className={`div${i}`}><div className={`ceil ${answer == 1 ? 'redPoint' : answer == 2 ? 'greenPoint' : 'empty'}`}
-                        onClick={() => getPoint(answer, i)}>{answer == 1 ? 'O' : answer == 2 ? 'X' : ''}</div> </div>)
+                    return (<div className={`div${i}`}><div className={`ceil ${answer === 1 ? 'redPoint' : answer === 2 ? 'greenPoint' : 'empty'}`}
+                        onClick={() => getPoint(answer, i)}>{answer === 1 ? 'O' : answer === 2 ? 'X' : ''}</div> </div>)
                 })}
             </div>
 
             <div className="flex">
                 <div className="result">
 
-                    {winner == 1 ? 'Winner: O' : winner == 2 ? 'Winner: X' : ' '}
+                    {winner === 1 ? 'Winner: O' : winner === 2 ? 'Winner: X' : ' '}
                 </div>
                 <div className="resetButton" onClick={() => restState()}>
                     reset
