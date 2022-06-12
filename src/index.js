@@ -2,12 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import TickTackToe from './task2/TickTackToe'
 import reportWebVitals from './reportWebVitals';
+import Counter from './task1/Counter';
+import Todo from './task3/Todo';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    {/* <App /> */}
+    <Counter/>
+    <TickTackToe/>
+    <Todo/>
+    
   </React.StrictMode>
 );
 
